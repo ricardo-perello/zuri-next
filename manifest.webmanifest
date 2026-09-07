@@ -1,0 +1,1 @@
+{"name":"Zuri Next","short_name":"Zuri","description":"Glanceable live nearby Zurich departures","start_url":"/zuri-next/","display":"standalone","background_color":"#0b0f14","theme_color":"#0b0f14","lang":"en","scope":"/zuri-next/","orientation":"portrait","icons":[{"src":"favicon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}

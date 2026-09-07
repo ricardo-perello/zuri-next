@@ -1,0 +1,17 @@
+{
+  "name": "zuri-next",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Glanceable live nearby Zurich departures PWA",
+  "scripts": {
+    "dev": "pnpm --filter @zuri-next/web dev",
+    "build": "pnpm --filter @zuri-next/core build && pnpm --filter @zuri-next/web build",
+    "build:core": "pnpm --filter @zuri-next/core build",
+    "build:web": "pnpm --filter @zuri-next/web build",
+    "preview": "pnpm --filter @zuri-next/web preview"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@9.15.0"
+}

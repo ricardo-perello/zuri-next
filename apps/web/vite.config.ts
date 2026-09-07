@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
+  base: "/zuri-next/",
   plugins: [
     react(),
     VitePWA({
@@ -16,7 +17,8 @@ export default defineConfig({
         background_color: "#0b0f14",
         display: "standalone",
         orientation: "portrait",
-        start_url: "/",
+        start_url: "/zuri-next/",
+        scope: "/zuri-next/",
         icons: [
           {
             src: "favicon.svg",
@@ -27,7 +29,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        navigateFallback: "/index.html",
+        navigateFallback: "/zuri-next/index.html",
         runtimeCaching: [],
       },
     }),

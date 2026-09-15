@@ -4,6 +4,7 @@ import {
   NEARBY_CACHE_TTL_MS,
   STATIONBOARD_CACHE_TTL_MS,
 } from "./refresh.js";
+import { lineDisplayName, sortDeparturesElinkFirst } from "./elink.js";
 import type {
   Departure,
   Delay,
@@ -107,6 +108,7 @@ export function createTransportClient(config?: Partial<TransportClientConfig>) {
         name?: string;
         category?: string;
         number?: string;
+        operator?: string;
         to?: string;
         stop?: {
           departure?: string;
@@ -129,11 +131,17 @@ export function createTransportClient(config?: Partial<TransportClientConfig>) {
       if (!depIso) continue;
       const depMs = Date.parse(depIso);
       const countdownSeconds = Math.max(0, Math.round((depMs - now) / 1000));
-      const lineName = row.number || row.name || "?";
       const line: Line = {
-        name: String(lineName),
+        name: lineDisplayName({
+          number: row.number,
+          operator: row.operator,
+          category: row.category,
+          destination: row.to,
+          name: row.name,
+        }),
         category: row.category,
         number: row.number,
+        operator: row.operator?.trim() || undefined,
       };
       let delay: Delay | undefined;
       if (typeof row.stop?.delay === "number" && row.stop.delay !== 0) {
@@ -151,8 +159,9 @@ export function createTransportClient(config?: Partial<TransportClientConfig>) {
       });
     }
 
-    defaultCache.set(cacheKey, departures, STATIONBOARD_CACHE_TTL_MS);
-    return departures;
+    const sorted = sortDeparturesElinkFirst(departures);
+    defaultCache.set(cacheKey, sorted, STATIONBOARD_CACHE_TTL_MS);
+    return sorted;
   }
 
   function invalidateCache(): void {

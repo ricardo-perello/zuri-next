@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Departure } from "@zuri-next/core";
+import { isElinkLine, type Departure } from "@zuri-next/core";
 
 interface Props {
   departures: Departure[];
@@ -39,9 +39,15 @@ export function DepartureList({ departures, fetchedAt }: Props) {
           Math.round((Date.parse(d.departureISO) - now) / 1000),
         );
         void fetchedAt;
+        const elink = isElinkLine(d.line);
         return (
-          <li key={d.id} className="dep">
-            <span className="line-badge">{d.line.name}</span>
+          <li key={d.id} className={elink ? "dep dep-elink" : "dep"}>
+            <span
+              className={elink ? "line-badge line-badge-elink" : "line-badge"}
+              title={elink ? "ETH eLink (line E, VBG)" : undefined}
+            >
+              {d.line.name}
+            </span>
             <span className="dep-to">{d.destination}</span>
             <span className="dep-meta">
               <span className="countdown">{formatCountdown(remaining)}</span>

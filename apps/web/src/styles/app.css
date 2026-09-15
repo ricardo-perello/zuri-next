@@ -211,3 +211,15 @@ h2 {
 .countdown { font-weight: 700; font-variant-numeric: tabular-nums; }
 .delay { color: var(--warn); font-size: 0.75rem; }
 .platform { color: var(--muted); font-size: 0.75rem; }
+
+.line-badge-elink {
+  min-width: 3.2rem;
+  background: #1a1030;
+  color: #c4b5fd;
+  border-color: #5b21b6;
+  letter-spacing: 0.02em;
+}
+
+.dep-elink .dep-to {
+  font-weight: 500;
+}

@@ -37,3 +37,13 @@ export { distanceMeters, DEFAULT_RADIUS_METERS } from "./geo.js";
 
 export { createTransportClient, PRODUCTION_API_BASE } from "./client.js";
 export type { TransportClient } from "./client.js";
+
+export {
+  ELINK_DISPLAY_NAME,
+  isElink,
+  isElinkLine,
+  lineDisplayName,
+  sortDeparturesElinkFirst,
+  isBusLike,
+} from "./elink.js";
+export type { ElinkLike } from "./elink.js";

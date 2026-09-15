@@ -12,9 +12,12 @@ export interface Stop {
 }
 
 export interface Line {
+  /** Display name (e.g. "10", "eLink"). */
   name: string;
   category?: string;
   number?: string;
+  /** Operator code from the feed (e.g. "VBG", "VBZ"). */
+  operator?: string;
 }
 
 export interface Delay {

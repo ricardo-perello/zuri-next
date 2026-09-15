@@ -46,13 +46,13 @@ Prod calls `https://transport.opendata.ch/v1` directly (API sends `Access-Contro
 - Nearby: `/locations?x=&y=&type=station`
 - Departures: `/stationboard?station=&limit=`
 - **Rate limits:** the public transport.opendata.ch API is shared and rate-limited. Prefer sensible refresh (~45s), cache responses, and avoid hammering on every render. Heavy traffic may get throttled or temporary errors.
-- **eLink / real-time:** some operators expose richer realtime (e.g. eLink). This MVP uses only transport.opendata.ch; delay fields may be missing or approximate depending on the feed.
+- **eLink:** the ETH-only free shuttle appears in the public feed as **line E** (category `B`, operator **VBG**), shown in the UI as **eLink**. Common stops: Zürich Haldenegg, ETH/Universitätsspital, ETH Hönggerberg. This app uses only transport.opendata.ch (no paid APIs); if the feed is incomplete, ETH publishes a PDF timetable backup at [ethz.ch staffnet mobility](https://ethz.ch/staffnet/en/service-and-administration/finance-and-controlling/mobility.html). Delay fields may be missing or approximate depending on the feed.
 
 ## Features
 
-- Geolocation or campus chip presets (ETH Zentrum, Honggerberg, HB, Bellevue)
+- Geolocation or campus chip presets (ETH Zentrum, Haldenegg, ETH/Uni, Hönggerberg, HB, Bellevue)
 - Nearest stops with tunable radius (default ~700 m)
-- Departures: line, destination, countdown, delay when present
+- Departures: line (eLink badge for ETH line E / VBG), destination, countdown, delay when present; eLink boosted near top of the board
 - Manual refresh + auto-refresh ~45 s while the tab is visible
 - Pin / favourite stops in `localStorage`
 - Dark theme, PWA manifest (A2HS)
